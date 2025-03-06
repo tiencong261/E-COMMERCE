@@ -1,0 +1,502 @@
+[
+    {
+        "id": 1,
+        "title": "Bảo hành",
+        "content": "Bảo hành chính hãng 12 tháng với lỗi từ nhà sản xuất. Không áp dụng bảo hành với lỗi do người dùng gây ra. (Áp dụng cho điều khoản số 1)"
+    },
+    {
+        "id": 2,
+        "title": "Chính sách vận chuyển",
+        "content": "Chúng tôi cung cấp dịch vụ giao hàng toàn quốc với thời gian từ 2-5 ngày làm việc. (Áp dụng cho điều khoản số 2)"
+    },
+    {
+        "id": 3,
+        "title": "Chính sách hoàn tiền",
+        "content": "Khách hàng có thể yêu cầu hoàn tiền nếu sản phẩm bị lỗi hoặc không đúng mô tả. Thời gian hoàn tiền từ 5-7 ngày. (Áp dụng cho điều khoản số 3)"
+    },
+    {
+        "id": 4,
+        "title": "Điều khoản sử dụng",
+        "content": "Bằng việc sử dụng dịch vụ của chúng tôi, bạn đồng ý tuân thủ các điều khoản và điều kiện. (Áp dụng cho điều khoản số 4)"
+    },
+    {
+        "id": 5,
+        "title": "Chính sách bảo mật",
+        "content": "Chúng tôi cam kết bảo vệ thông tin cá nhân của khách hàng và không chia sẻ với bên thứ ba khi chưa có sự đồng ý. (Áp dụng cho điều khoản số 5)"
+    },
+    {
+        "id": 6,
+        "title": "Hướng dẫn thanh toán",
+        "content": "Chúng tôi chấp nhận thanh toán qua thẻ tín dụng, thẻ ghi nợ, chuyển khoản ngân hàng và COD. (Áp dụng cho điều khoản số 6)"
+    },
+    {
+        "id": 7,
+        "title": "Hỗ trợ khách hàng",
+        "content": "Bạn có thể liên hệ qua hotline hoặc email để được hỗ trợ nhanh nhất. (Áp dụng cho điều khoản số 7)"
+    },
+    {
+        "id": 8,
+        "title": "Quyền lợi thành viên",
+        "content": "Thành viên VIP được hưởng nhiều ưu đãi đặc biệt, bao gồm giảm giá và quà tặng. (Áp dụng cho điều khoản số 8)"
+    },
+    {
+        "id": 9,
+        "title": "Chính sách giá cả",
+        "content": "Giá cả có thể thay đổi theo thời điểm và khu vực, cam kết mức giá cạnh tranh nhất. (Áp dụng cho điều khoản số 9)"
+    },
+    {
+        "id": 10,
+        "title": "Quy trình khiếu nại",
+        "content": "Khách hàng có thể gửi khiếu nại về đơn hàng trong vòng 48 giờ kể từ khi nhận hàng. (Áp dụng cho điều khoản số 10)"
+    },
+    {
+        "id": 11,
+        "title": "Chính sách về sản phẩm lỗi",
+        "content": "Sản phẩm lỗi do nhà sản xuất sẽ được đổi mới miễn phí trong thời gian bảo hành. (Áp dụng cho điều khoản số 11)"
+    },
+    {
+        "id": 12,
+        "title": "Điều kiện sử dụng mã giảm giá",
+        "content": "Mã giảm giá chỉ áp dụng cho một số sản phẩm và không thể quy đổi thành tiền mặt. (Áp dụng cho điều khoản số 12)"
+    },
+    {
+        "id": 13,
+        "title": "Chính sách tích điểm",
+        "content": "Mỗi đơn hàng sẽ được tích điểm vào tài khoản và có thể đổi thành phiếu mua hàng. (Áp dụng cho điều khoản số 13)"
+    },
+    {
+        "id": 14,
+        "title": "Hướng dẫn sử dụng sản phẩm",
+        "content": "Khách hàng nên đọc kỹ hướng dẫn sử dụng để đảm bảo hiệu quả tốt nhất. (Áp dụng cho điều khoản số 14)"
+    },
+    {
+        "id": 15,
+        "title": "Chính sách bảo vệ quyền lợi người tiêu dùng",
+        "content": "Chúng tôi bảo vệ quyền lợi người tiêu dùng bằng cách cung cấp thông tin minh bạch về sản phẩm. (Áp dụng cho điều khoản số 15)"
+    },
+    {
+        "id": 16,
+        "title": "Chính sách hủy đơn hàng",
+        "content": "Hủy đơn hàng có thể thực hiện trong vòng 24 giờ sau khi đặt hàng. (Áp dụng cho điều khoản số 16)"
+    },
+    {
+        "id": 17,
+        "title": "Thời gian xử lý đơn hàng",
+        "content": "Thời gian xử lý đơn hàng là 24 giờ và giao hàng trong 2-5 ngày tùy khu vực. (Áp dụng cho điều khoản số 17)"
+    },
+    {
+        "id": 18,
+        "title": "Chính sách bảo vệ quyền sở hữu trí tuệ",
+        "content": "Chúng tôi cam kết bảo vệ quyền sở hữu trí tuệ của các thương hiệu và nhà cung cấp. (Áp dụng cho điều khoản số 18)"
+    },
+    {
+        "id": 19,
+        "title": "Quy định về nội dung đánh giá sản phẩm",
+        "content": "Chỉ những đánh giá khách quan, đúng sự thật mới được hiển thị trên hệ thống. (Áp dụng cho điều khoản số 19)"
+    },
+    {
+        "id": 20,
+        "title": "Hướng dẫn đăng ký tài khoản",
+        "content": "Khách hàng cần cung cấp thông tin chính xác khi đăng ký tài khoản để đảm bảo bảo mật. (Áp dụng cho điều khoản số 20)"
+    },
+    {
+        "id": 21,
+        "title": "Chính sách thu thập dữ liệu người dùng",
+        "content": "Chúng tôi thu thập dữ liệu nhằm nâng cao trải nghiệm khách hàng nhưng luôn tôn trọng quyền riêng tư. (Áp dụng cho điều khoản số 21)"
+    },
+    {
+        "id": 22,
+        "title": "Chính sách chống gian lận",
+        "content": "Các hành vi gian lận khi đặt hàng có thể dẫn đến khóa tài khoản vĩnh viễn. (Áp dụng cho điều khoản số 22)"
+    },
+    {
+        "id": 23,
+        "title": "Hướng dẫn đổi quà",
+        "content": "Khách hàng có thể đổi quà khi tích đủ điểm thưởng từ chương trình khách hàng thân thiết. (Áp dụng cho điều khoản số 23)"
+    },
+    {
+        "id": 24,
+        "title": "Quy tắc sử dụng ví điện tử",
+        "content": "Ví điện tử giúp thanh toán nhanh chóng và an toàn, cần xác minh danh tính trước khi sử dụng. (Áp dụng cho điều khoản số 24)"
+    },
+    {
+        "id": 25,
+        "title": "Chính sách tặng quà",
+        "content": "Chúng tôi có chính sách tặng quà đặc biệt cho khách hàng vào các dịp lễ, tết. (Áp dụng cho điều khoản số 25)"
+    },
+    {
+        "id": 26,
+        "title": "Chính sách bảo vệ môi trường",
+        "content": "Chúng tôi khuyến khích sử dụng bao bì thân thiện với môi trường và hạn chế rác thải nhựa. (Áp dụng cho điều khoản số 26)"
+    },
+    {
+        "id": 27,
+        "title": "Hướng dẫn mua hàng quốc tế",
+        "content": "Hướng dẫn chi tiết giúp khách hàng mua sắm quốc tế dễ dàng hơn với các chính sách thuế rõ ràng. (Áp dụng cho điều khoản số 27)"
+    },
+    {
+        "id": 28,
+        "title": "Hướng dẫn sử dụng dịch vụ trả góp",
+        "content": "Dịch vụ trả góp 0% lãi suất áp dụng với một số đối tác ngân hàng nhất định. (Áp dụng cho điều khoản số 28)"
+    },
+    {
+        "id": 29,
+        "title": "Chính sách cộng tác viên",
+        "content": "Chương trình cộng tác viên cho phép bạn kiếm tiền từ việc giới thiệu khách hàng mới. (Áp dụng cho điều khoản số 29)"
+    },
+    {
+        "id": 30,
+        "title": "Chính sách đổi trả",
+        "content": "Sản phẩm có thể được đổi trả trong vòng 7 ngày kể từ ngày nhận hàng, với điều kiện sản phẩm còn nguyên vẹn. (Áp dụng cho điều khoản số 30)"
+    },
+    {
+        "id": 31,
+        "title": "Bảo hành",
+        "content": "Bảo hành chính hãng 12 tháng với lỗi từ nhà sản xuất. Không áp dụng bảo hành với lỗi do người dùng gây ra. (Áp dụng cho điều khoản số 31)"
+    },
+    {
+        "id": 32,
+        "title": "Chính sách vận chuyển",
+        "content": "Chúng tôi cung cấp dịch vụ giao hàng toàn quốc với thời gian từ 2-5 ngày làm việc. (Áp dụng cho điều khoản số 32)"
+    },
+    {
+        "id": 33,
+        "title": "Chính sách hoàn tiền",
+        "content": "Khách hàng có thể yêu cầu hoàn tiền nếu sản phẩm bị lỗi hoặc không đúng mô tả. Thời gian hoàn tiền từ 5-7 ngày. (Áp dụng cho điều khoản số 33)"
+    },
+    {
+        "id": 34,
+        "title": "Điều khoản sử dụng",
+        "content": "Bằng việc sử dụng dịch vụ của chúng tôi, bạn đồng ý tuân thủ các điều khoản và điều kiện. (Áp dụng cho điều khoản số 34)"
+    },
+    {
+        "id": 35,
+        "title": "Chính sách bảo mật",
+        "content": "Chúng tôi cam kết bảo vệ thông tin cá nhân của khách hàng và không chia sẻ với bên thứ ba khi chưa có sự đồng ý. (Áp dụng cho điều khoản số 35)"
+    },
+    {
+        "id": 36,
+        "title": "Hướng dẫn thanh toán",
+        "content": "Chúng tôi chấp nhận thanh toán qua thẻ tín dụng, thẻ ghi nợ, chuyển khoản ngân hàng và COD. (Áp dụng cho điều khoản số 36)"
+    },
+    {
+        "id": 37,
+        "title": "Hỗ trợ khách hàng",
+        "content": "Bạn có thể liên hệ qua hotline hoặc email để được hỗ trợ nhanh nhất. (Áp dụng cho điều khoản số 37)"
+    },
+    {
+        "id": 38,
+        "title": "Quyền lợi thành viên",
+        "content": "Thành viên VIP được hưởng nhiều ưu đãi đặc biệt, bao gồm giảm giá và quà tặng. (Áp dụng cho điều khoản số 38)"
+    },
+    {
+        "id": 39,
+        "title": "Chính sách giá cả",
+        "content": "Giá cả có thể thay đổi theo thời điểm và khu vực, cam kết mức giá cạnh tranh nhất. (Áp dụng cho điều khoản số 39)"
+    },
+    {
+        "id": 40,
+        "title": "Quy trình khiếu nại",
+        "content": "Khách hàng có thể gửi khiếu nại về đơn hàng trong vòng 48 giờ kể từ khi nhận hàng. (Áp dụng cho điều khoản số 40)"
+    },
+    {
+        "id": 41,
+        "title": "Chính sách về sản phẩm lỗi",
+        "content": "Sản phẩm lỗi do nhà sản xuất sẽ được đổi mới miễn phí trong thời gian bảo hành. (Áp dụng cho điều khoản số 41)"
+    },
+    {
+        "id": 42,
+        "title": "Điều kiện sử dụng mã giảm giá",
+        "content": "Mã giảm giá chỉ áp dụng cho một số sản phẩm và không thể quy đổi thành tiền mặt. (Áp dụng cho điều khoản số 42)"
+    },
+    {
+        "id": 43,
+        "title": "Chính sách tích điểm",
+        "content": "Mỗi đơn hàng sẽ được tích điểm vào tài khoản và có thể đổi thành phiếu mua hàng. (Áp dụng cho điều khoản số 43)"
+    },
+    {
+        "id": 44,
+        "title": "Hướng dẫn sử dụng sản phẩm",
+        "content": "Khách hàng nên đọc kỹ hướng dẫn sử dụng để đảm bảo hiệu quả tốt nhất. (Áp dụng cho điều khoản số 44)"
+    },
+    {
+        "id": 45,
+        "title": "Chính sách bảo vệ quyền lợi người tiêu dùng",
+        "content": "Chúng tôi bảo vệ quyền lợi người tiêu dùng bằng cách cung cấp thông tin minh bạch về sản phẩm. (Áp dụng cho điều khoản số 45)"
+    },
+    {
+        "id": 46,
+        "title": "Chính sách hủy đơn hàng",
+        "content": "Hủy đơn hàng có thể thực hiện trong vòng 24 giờ sau khi đặt hàng. (Áp dụng cho điều khoản số 46)"
+    },
+    {
+        "id": 47,
+        "title": "Thời gian xử lý đơn hàng",
+        "content": "Thời gian xử lý đơn hàng là 24 giờ và giao hàng trong 2-5 ngày tùy khu vực. (Áp dụng cho điều khoản số 47)"
+    },
+    {
+        "id": 48,
+        "title": "Chính sách bảo vệ quyền sở hữu trí tuệ",
+        "content": "Chúng tôi cam kết bảo vệ quyền sở hữu trí tuệ của các thương hiệu và nhà cung cấp. (Áp dụng cho điều khoản số 48)"
+    },
+    {
+        "id": 49,
+        "title": "Quy định về nội dung đánh giá sản phẩm",
+        "content": "Chỉ những đánh giá khách quan, đúng sự thật mới được hiển thị trên hệ thống. (Áp dụng cho điều khoản số 49)"
+    },
+    {
+        "id": 50,
+        "title": "Hướng dẫn đăng ký tài khoản",
+        "content": "Khách hàng cần cung cấp thông tin chính xác khi đăng ký tài khoản để đảm bảo bảo mật. (Áp dụng cho điều khoản số 50)"
+    },
+    {
+        "id": 51,
+        "title": "Chính sách thu thập dữ liệu người dùng",
+        "content": "Chúng tôi thu thập dữ liệu nhằm nâng cao trải nghiệm khách hàng nhưng luôn tôn trọng quyền riêng tư. (Áp dụng cho điều khoản số 51)"
+    },
+    {
+        "id": 52,
+        "title": "Chính sách chống gian lận",
+        "content": "Các hành vi gian lận khi đặt hàng có thể dẫn đến khóa tài khoản vĩnh viễn. (Áp dụng cho điều khoản số 52)"
+    },
+    {
+        "id": 53,
+        "title": "Hướng dẫn đổi quà",
+        "content": "Khách hàng có thể đổi quà khi tích đủ điểm thưởng từ chương trình khách hàng thân thiết. (Áp dụng cho điều khoản số 53)"
+    },
+    {
+        "id": 54,
+        "title": "Quy tắc sử dụng ví điện tử",
+        "content": "Ví điện tử giúp thanh toán nhanh chóng và an toàn, cần xác minh danh tính trước khi sử dụng. (Áp dụng cho điều khoản số 54)"
+    },
+    {
+        "id": 55,
+        "title": "Chính sách tặng quà",
+        "content": "Chúng tôi có chính sách tặng quà đặc biệt cho khách hàng vào các dịp lễ, tết. (Áp dụng cho điều khoản số 55)"
+    },
+    {
+        "id": 56,
+        "title": "Chính sách bảo vệ môi trường",
+        "content": "Chúng tôi khuyến khích sử dụng bao bì thân thiện với môi trường và hạn chế rác thải nhựa. (Áp dụng cho điều khoản số 56)"
+    },
+    {
+        "id": 57,
+        "title": "Hướng dẫn mua hàng quốc tế",
+        "content": "Hướng dẫn chi tiết giúp khách hàng mua sắm quốc tế dễ dàng hơn với các chính sách thuế rõ ràng. (Áp dụng cho điều khoản số 57)"
+    },
+    {
+        "id": 58,
+        "title": "Hướng dẫn sử dụng dịch vụ trả góp",
+        "content": "Dịch vụ trả góp 0% lãi suất áp dụng với một số đối tác ngân hàng nhất định. (Áp dụng cho điều khoản số 58)"
+    },
+    {
+        "id": 59,
+        "title": "Chính sách cộng tác viên",
+        "content": "Chương trình cộng tác viên cho phép bạn kiếm tiền từ việc giới thiệu khách hàng mới. (Áp dụng cho điều khoản số 59)"
+    },
+    {
+        "id": 60,
+        "title": "Chính sách đổi trả",
+        "content": "Sản phẩm có thể được đổi trả trong vòng 7 ngày kể từ ngày nhận hàng, với điều kiện sản phẩm còn nguyên vẹn. (Áp dụng cho điều khoản số 60)"
+    },
+    {
+        "id": 61,
+        "title": "Bảo hành",
+        "content": "Bảo hành chính hãng 12 tháng với lỗi từ nhà sản xuất. Không áp dụng bảo hành với lỗi do người dùng gây ra. (Áp dụng cho điều khoản số 61)"
+    },
+    {
+        "id": 62,
+        "title": "Chính sách vận chuyển",
+        "content": "Chúng tôi cung cấp dịch vụ giao hàng toàn quốc với thời gian từ 2-5 ngày làm việc. (Áp dụng cho điều khoản số 62)"
+    },
+    {
+        "id": 63,
+        "title": "Chính sách hoàn tiền",
+        "content": "Khách hàng có thể yêu cầu hoàn tiền nếu sản phẩm bị lỗi hoặc không đúng mô tả. Thời gian hoàn tiền từ 5-7 ngày. (Áp dụng cho điều khoản số 63)"
+    },
+    {
+        "id": 64,
+        "title": "Điều khoản sử dụng",
+        "content": "Bằng việc sử dụng dịch vụ của chúng tôi, bạn đồng ý tuân thủ các điều khoản và điều kiện. (Áp dụng cho điều khoản số 64)"
+    },
+    {
+        "id": 65,
+        "title": "Chính sách bảo mật",
+        "content": "Chúng tôi cam kết bảo vệ thông tin cá nhân của khách hàng và không chia sẻ với bên thứ ba khi chưa có sự đồng ý. (Áp dụng cho điều khoản số 65)"
+    },
+    {
+        "id": 66,
+        "title": "Hướng dẫn thanh toán",
+        "content": "Chúng tôi chấp nhận thanh toán qua thẻ tín dụng, thẻ ghi nợ, chuyển khoản ngân hàng và COD. (Áp dụng cho điều khoản số 66)"
+    },
+    {
+        "id": 67,
+        "title": "Hỗ trợ khách hàng",
+        "content": "Bạn có thể liên hệ qua hotline hoặc email để được hỗ trợ nhanh nhất. (Áp dụng cho điều khoản số 67)"
+    },
+    {
+        "id": 68,
+        "title": "Quyền lợi thành viên",
+        "content": "Thành viên VIP được hưởng nhiều ưu đãi đặc biệt, bao gồm giảm giá và quà tặng. (Áp dụng cho điều khoản số 68)"
+    },
+    {
+        "id": 69,
+        "title": "Chính sách giá cả",
+        "content": "Giá cả có thể thay đổi theo thời điểm và khu vực, cam kết mức giá cạnh tranh nhất. (Áp dụng cho điều khoản số 69)"
+    },
+    {
+        "id": 70,
+        "title": "Quy trình khiếu nại",
+        "content": "Khách hàng có thể gửi khiếu nại về đơn hàng trong vòng 48 giờ kể từ khi nhận hàng. (Áp dụng cho điều khoản số 70)"
+    },
+    {
+        "id": 71,
+        "title": "Chính sách về sản phẩm lỗi",
+        "content": "Sản phẩm lỗi do nhà sản xuất sẽ được đổi mới miễn phí trong thời gian bảo hành. (Áp dụng cho điều khoản số 71)"
+    },
+    {
+        "id": 72,
+        "title": "Điều kiện sử dụng mã giảm giá",
+        "content": "Mã giảm giá chỉ áp dụng cho một số sản phẩm và không thể quy đổi thành tiền mặt. (Áp dụng cho điều khoản số 72)"
+    },
+    {
+        "id": 73,
+        "title": "Chính sách tích điểm",
+        "content": "Mỗi đơn hàng sẽ được tích điểm vào tài khoản và có thể đổi thành phiếu mua hàng. (Áp dụng cho điều khoản số 73)"
+    },
+    {
+        "id": 74,
+        "title": "Hướng dẫn sử dụng sản phẩm",
+        "content": "Khách hàng nên đọc kỹ hướng dẫn sử dụng để đảm bảo hiệu quả tốt nhất. (Áp dụng cho điều khoản số 74)"
+    },
+    {
+        "id": 75,
+        "title": "Chính sách bảo vệ quyền lợi người tiêu dùng",
+        "content": "Chúng tôi bảo vệ quyền lợi người tiêu dùng bằng cách cung cấp thông tin minh bạch về sản phẩm. (Áp dụng cho điều khoản số 75)"
+    },
+    {
+        "id": 76,
+        "title": "Chính sách hủy đơn hàng",
+        "content": "Hủy đơn hàng có thể thực hiện trong vòng 24 giờ sau khi đặt hàng. (Áp dụng cho điều khoản số 76)"
+    },
+    {
+        "id": 77,
+        "title": "Thời gian xử lý đơn hàng",
+        "content": "Thời gian xử lý đơn hàng là 24 giờ và giao hàng trong 2-5 ngày tùy khu vực. (Áp dụng cho điều khoản số 77)"
+    },
+    {
+        "id": 78,
+        "title": "Chính sách bảo vệ quyền sở hữu trí tuệ",
+        "content": "Chúng tôi cam kết bảo vệ quyền sở hữu trí tuệ của các thương hiệu và nhà cung cấp. (Áp dụng cho điều khoản số 78)"
+    },
+    {
+        "id": 79,
+        "title": "Quy định về nội dung đánh giá sản phẩm",
+        "content": "Chỉ những đánh giá khách quan, đúng sự thật mới được hiển thị trên hệ thống. (Áp dụng cho điều khoản số 79)"
+    },
+    {
+        "id": 80,
+        "title": "Hướng dẫn đăng ký tài khoản",
+        "content": "Khách hàng cần cung cấp thông tin chính xác khi đăng ký tài khoản để đảm bảo bảo mật. (Áp dụng cho điều khoản số 80)"
+    },
+    {
+        "id": 81,
+        "title": "Chính sách thu thập dữ liệu người dùng",
+        "content": "Chúng tôi thu thập dữ liệu nhằm nâng cao trải nghiệm khách hàng nhưng luôn tôn trọng quyền riêng tư. (Áp dụng cho điều khoản số 81)"
+    },
+    {
+        "id": 82,
+        "title": "Chính sách chống gian lận",
+        "content": "Các hành vi gian lận khi đặt hàng có thể dẫn đến khóa tài khoản vĩnh viễn. (Áp dụng cho điều khoản số 82)"
+    },
+    {
+        "id": 83,
+        "title": "Hướng dẫn đổi quà",
+        "content": "Khách hàng có thể đổi quà khi tích đủ điểm thưởng từ chương trình khách hàng thân thiết. (Áp dụng cho điều khoản số 83)"
+    },
+    {
+        "id": 84,
+        "title": "Quy tắc sử dụng ví điện tử",
+        "content": "Ví điện tử giúp thanh toán nhanh chóng và an toàn, cần xác minh danh tính trước khi sử dụng. (Áp dụng cho điều khoản số 84)"
+    },
+    {
+        "id": 85,
+        "title": "Chính sách tặng quà",
+        "content": "Chúng tôi có chính sách tặng quà đặc biệt cho khách hàng vào các dịp lễ, tết. (Áp dụng cho điều khoản số 85)"
+    },
+    {
+        "id": 86,
+        "title": "Chính sách bảo vệ môi trường",
+        "content": "Chúng tôi khuyến khích sử dụng bao bì thân thiện với môi trường và hạn chế rác thải nhựa. (Áp dụng cho điều khoản số 86)"
+    },
+    {
+        "id": 87,
+        "title": "Hướng dẫn mua hàng quốc tế",
+        "content": "Hướng dẫn chi tiết giúp khách hàng mua sắm quốc tế dễ dàng hơn với các chính sách thuế rõ ràng. (Áp dụng cho điều khoản số 87)"
+    },
+    {
+        "id": 88,
+        "title": "Hướng dẫn sử dụng dịch vụ trả góp",
+        "content": "Dịch vụ trả góp 0% lãi suất áp dụng với một số đối tác ngân hàng nhất định. (Áp dụng cho điều khoản số 88)"
+    },
+    {
+        "id": 89,
+        "title": "Chính sách cộng tác viên",
+        "content": "Chương trình cộng tác viên cho phép bạn kiếm tiền từ việc giới thiệu khách hàng mới. (Áp dụng cho điều khoản số 89)"
+    },
+    {
+        "id": 90,
+        "title": "Chính sách đổi trả",
+        "content": "Sản phẩm có thể được đổi trả trong vòng 7 ngày kể từ ngày nhận hàng, với điều kiện sản phẩm còn nguyên vẹn. (Áp dụng cho điều khoản số 90)"
+    },
+    {
+        "id": 91,
+        "title": "Bảo hành",
+        "content": "Bảo hành chính hãng 12 tháng với lỗi từ nhà sản xuất. Không áp dụng bảo hành với lỗi do người dùng gây ra. (Áp dụng cho điều khoản số 91)"
+    },
+    {
+        "id": 92,
+        "title": "Chính sách vận chuyển",
+        "content": "Chúng tôi cung cấp dịch vụ giao hàng toàn quốc với thời gian từ 2-5 ngày làm việc. (Áp dụng cho điều khoản số 92)"
+    },
+    {
+        "id": 93,
+        "title": "Chính sách hoàn tiền",
+        "content": "Khách hàng có thể yêu cầu hoàn tiền nếu sản phẩm bị lỗi hoặc không đúng mô tả. Thời gian hoàn tiền từ 5-7 ngày. (Áp dụng cho điều khoản số 93)"
+    },
+    {
+        "id": 94,
+        "title": "Điều khoản sử dụng",
+        "content": "Bằng việc sử dụng dịch vụ của chúng tôi, bạn đồng ý tuân thủ các điều khoản và điều kiện. (Áp dụng cho điều khoản số 94)"
+    },
+    {
+        "id": 95,
+        "title": "Chính sách bảo mật",
+        "content": "Chúng tôi cam kết bảo vệ thông tin cá nhân của khách hàng và không chia sẻ với bên thứ ba khi chưa có sự đồng ý. (Áp dụng cho điều khoản số 95)"
+    },
+    {
+        "id": 96,
+        "title": "Hướng dẫn thanh toán",
+        "content": "Chúng tôi chấp nhận thanh toán qua thẻ tín dụng, thẻ ghi nợ, chuyển khoản ngân hàng và COD. (Áp dụng cho điều khoản số 96)"
+    },
+    {
+        "id": 97,
+        "title": "Hỗ trợ khách hàng",
+        "content": "Bạn có thể liên hệ qua hotline hoặc email để được hỗ trợ nhanh nhất. (Áp dụng cho điều khoản số 97)"
+    },
+    {
+        "id": 98,
+        "title": "Quyền lợi thành viên",
+        "content": "Thành viên VIP được hưởng nhiều ưu đãi đặc biệt, bao gồm giảm giá và quà tặng. (Áp dụng cho điều khoản số 98)"
+    },
+    {
+        "id": 99,
+        "title": "Chính sách giá cả",
+        "content": "Giá cả có thể thay đổi theo thời điểm và khu vực, cam kết mức giá cạnh tranh nhất. (Áp dụng cho điều khoản số 99)"
+    },
+    {
+        "id": 100,
+        "title": "Quy trình khiếu nại",
+        "content": "Khách hàng có thể gửi khiếu nại về đơn hàng trong vòng 48 giờ kể từ khi nhận hàng. (Áp dụng cho điều khoản số 100)"
+    }
+]
