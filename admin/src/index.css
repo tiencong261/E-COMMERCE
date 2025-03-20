@@ -8,6 +8,11 @@
     font-family: Outfit;
 }
 
+select, input, textarea {
+    border: 1px solid violet;
+    outline-color: green;
+    border-radius: 4px;
+}
 
 .active {
     background-color: pink;
