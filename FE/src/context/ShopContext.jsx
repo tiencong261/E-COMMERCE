@@ -41,10 +41,13 @@ import axios from 'axios';
         }
 
         setCartItems(cartData);
+        console.log(cartData);
 
         if (token) {
            try {
+
             await axios.post(backendUrl + "/api/cart/add", {itemId, size}, {headers:{token}})
+
            } catch (error) {
             console.log(error);
             toast.error(error.message);
@@ -148,7 +151,7 @@ import axios from 'axios';
     const value = {
         products, currency, delivery_fee,
         search, setSearch, showSearch, setShowSearch,
-        cartItems, addToCart,
+        cartItems, addToCart, setCartItems,
         getCartCount, updateQuantity,
         getCartAmount, navigate, backendUrl,
         setToken, token

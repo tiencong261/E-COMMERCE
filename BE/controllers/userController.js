@@ -107,5 +107,3 @@ const adminLogin = async (req, res) => {
 
 
 export { loginUser, registerUser, adminLogin }
-
-//6:15
