@@ -303,16 +303,16 @@ const PlaceOrder = () => {
 
         //   break;
 
-        case 'vnpay':
-          const responseVnpay = await axios.post(backendUrl+ '/api/order/vnpay', orderData, {headers:{token}})
-          if (responseVnpay.data.success) {
-            // Backend sẽ trả về URL chuyển hướng đến trang thanh toán VNPAY
-            window.location.replace(responseVnpay.data.paymentUrl);
+        // case 'vnpay':
+        //   const responseVnpay = await axios.post(backendUrl+ '/api/order/vnpay', orderData, {headers:{token}})
+        //   if (responseVnpay.data.success) {
+        //     // Backend sẽ trả về URL chuyển hướng đến trang thanh toán VNPAY
+        //     window.location.replace(responseVnpay.data.paymentUrl);
             
-          } else {
-            toast.error(responseVnpay.data.message);
-          }
-          break;
+        //   } else {
+        //     toast.error(responseVnpay.data.message);
+        //   }
+        //   break;
 
         default:
            break;

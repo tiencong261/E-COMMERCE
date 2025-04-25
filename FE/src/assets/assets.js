@@ -57,6 +57,7 @@ import i_img_dowload from './i_img_dowload.png'
 
 
 import logo from './logo.png'
+import chat_icon from './chat_icon.png'
 import hero_img from './hero_img.png'
 import cart_icon from './cart_icon.png'
 import bin_icon from './bin_icon.png'
@@ -78,6 +79,7 @@ import cross_icon from './cross_icon.png'
 
 export const assets = {
     logo,
+    chat_icon,
     hero_img,
     cart_icon,
     dropdown_icon,

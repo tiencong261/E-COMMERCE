@@ -1,5 +1,5 @@
 import express from 'express'
-import {placeOrder, placeOrderStripe, placeOrderVnpay, vnpayReturn, allOrder, userOrders, updateStatus, verifyStripe} from '../controllers/orderController.js'
+import {placeOrder, placeOrderStripe, allOrder, userOrders, updateStatus, verifyStripe} from '../controllers/orderController.js'
 import adminAuth from '../middleware/adminAuth.js'
 import authUser from '../middleware/auth.js'
 
@@ -13,8 +13,7 @@ orderRouter.post('/status', adminAuth, updateStatus);
 //Payment Features
 orderRouter.post('/place',authUser,placeOrder);
 orderRouter.post('/stripe', authUser, placeOrderStripe);
-orderRouter.post('/vnpay', authUser, placeOrderVnpay);
-orderRouter.get("/vnpay_return", vnpayReturn);
+// orderRouter.get("/vnpay_return", vnpayReturn);
 
 //User Features
 orderRouter.post('/userorders', authUser, userOrders);

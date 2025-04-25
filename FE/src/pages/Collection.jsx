@@ -137,9 +137,26 @@ const Collection = () => {
           {
             filterProducts.map((item, index)=>(
               <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image}/>
+              
             ))
           }
         </div>
+        {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gay-y-6">
+  {
+    filterProducts.map((item, index) => (
+      <div key={index} className="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 p-4">
+        <img
+          src={item.image}
+          alt={item.name}
+          
+        />
+        <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
+        <p className="text-primary font-bold mt-2">${item.price}</p>
+      </div>
+    ))
+  }
+</div> */}
+
       </div>
 
     </div>
