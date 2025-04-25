@@ -57,14 +57,13 @@ import axios from 'axios';
 
    const getCartCount = () => {
     let total = 0;
-    for(const items in cartItems){
-        for(const item in cartItems[items]){
-            try{
-                if(cartItems[items][item] > 0){
-                    total += cartItems[items][item];
-                }
-            } catch(error){
+        for (const itemId in cartItems) {
+            const product = products.find(p => p._id === itemId);
+            if (!product) continue; 
 
+            for (const size in cartItems[itemId]) {
+                if (cartItems[itemId][size] && cartItems[itemId][size] > 0) {
+                    total += cartItems[itemId][size];
             }
         }
     }
@@ -91,7 +90,20 @@ import axios from 'axios';
    const updateQuantity = async (itemId, size, quantity) => {
         let cartData = structuredClone(cartItems);
 
+        if (quantity === 0) {
+            if (cartData[itemId] && cartData[itemId][size] !== undefined) {
+                delete cartData[itemId][size];
+
+                if (Object.keys(cartData[itemId]).length === 0) {
+                    delete cartData[itemId];
+                }
+            }
+        } else {
+            if (!cartData[itemId]) {
+                cartData[itemId] = {};
+            }
         cartData[itemId][size] = quantity;
+        }
 
         setCartItems(cartData);
 
@@ -135,18 +147,18 @@ import axios from 'axios';
 
    }
 
-   useEffect(()=>{
+    useEffect(() => {
     getProductsData();
    }, [])
 
-   useEffect(()=>{
+    useEffect(() => {
 
     if (!token && localStorage.getItem('token')) {
         setToken(localStorage.getItem('token'));
         getUserCart(localStorage.getItem('token'));
     }
 
-   },[])
+    }, [])
 
     const value = {
         products, currency, delivery_fee,
