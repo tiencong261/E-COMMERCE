@@ -36,6 +36,7 @@ const App = () => {
         <Route path='/product/:productId' element={<Product/>} />
         <Route path='/verify' element={<Verify/>} />
 
+
       </Routes>
       <Footer />
     </div>
