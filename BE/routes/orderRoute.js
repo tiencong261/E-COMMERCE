@@ -1,25 +1,35 @@
-import express from 'express'
-import {placeOrder, placeOrderStripe, allOrder, userOrders, updateStatus, verifyStripe} from '../controllers/orderController.js'
-import adminAuth from '../middleware/adminAuth.js'
-import authUser from '../middleware/auth.js'
-
+import express from "express";
+import {
+  placeOrder,
+  placeOrderStripe,
+  allOrder,
+  userOrders,
+  updateStatus,
+  verifyStripe,
+  deleteAllOrders,
+  getRevenue,
+} from "../controllers/orderController.js";
+import adminAuth from "../middleware/adminAuth.js";
+import authUser from "../middleware/auth.js";
 
 const orderRouter = express.Router();
 
 //Admin Features
-orderRouter.post('/list', adminAuth, allOrder);
-orderRouter.post('/status', adminAuth, updateStatus);
+orderRouter.post("/list", adminAuth, allOrder);
+orderRouter.post("/status", adminAuth, updateStatus);
+orderRouter.post("/delete-all", adminAuth, deleteAllOrders);
+orderRouter.get("/revenue", adminAuth, getRevenue);
 
 //Payment Features
-orderRouter.post('/place',authUser,placeOrder);
-orderRouter.post('/stripe', authUser, placeOrderStripe);
+orderRouter.post("/place", authUser, placeOrder);
+orderRouter.post("/stripe", authUser, placeOrderStripe);
 // orderRouter.get("/vnpay_return", vnpayReturn);
 
 //User Features
-orderRouter.post('/userorders', authUser, userOrders);
+orderRouter.post("/userorders", authUser, userOrders);
 
 // verify payment
-orderRouter.post('/verifyStripe', authUser, verifyStripe)
+orderRouter.post("/verifyStripe", authUser, verifyStripe);
 
 export default orderRouter;
 // 12"35
