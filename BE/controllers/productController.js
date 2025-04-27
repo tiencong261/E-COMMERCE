@@ -90,4 +90,72 @@ const singleProduct = async (req, res) => {
   }
 };
 
-export { addProduct, listProducts, removeProduct, singleProduct };
+//updateProduct
+const updateProduct = async (req, res) => {
+  try {
+    const {
+      _id,
+      name,
+      description,
+      price,
+      category,
+      subCategory,
+      sizes,
+      bestseller,
+      image,
+    } = req.body;
+
+    const updated = await productModel.findByIdAndUpdate(_id, {
+      name,
+      description,
+      price: Number(price),
+      category,
+      subCategory,
+      sizes: JSON.parse(sizes),
+      bestseller: bestseller === "true" ? true : false,
+      image,
+    });
+
+    if (updated) {
+      res.json({ success: true, message: "Cập nhật sản phẩm thành công" });
+    } else {
+      res.json({ success: false, message: "Không tìm thấy sản phẩm" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+//import products from assets
+const importProductsFromAssets = async (req, res) => {
+  try {
+    const { products } = req.body;
+
+    // Validate products array
+    if (!Array.isArray(products)) {
+      return res.json({ success: false, message: "Products must be an array" });
+    }
+
+    // Insert all products
+    const result = await productModel.insertMany(products);
+
+    res.json({
+      success: true,
+      message: `Successfully imported ${result.length} products`,
+      products: result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export {
+  addProduct,
+  listProducts,
+  removeProduct,
+  singleProduct,
+  updateProduct,
+  importProductsFromAssets,
+};
