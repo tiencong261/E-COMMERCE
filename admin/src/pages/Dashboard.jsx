@@ -54,12 +54,27 @@ const Dashboard = ({ token }) => {
     try {
       setLoading(true);
       let url = "";
+      let toParam = to;
+      if (mode === "day" || mode === "product") {
+        const today = new Date();
+        const toDate = new Date(to);
+        if (
+          toDate.getFullYear() === today.getFullYear() &&
+          toDate.getMonth() === today.getMonth() &&
+          toDate.getDate() === today.getDate()
+        ) {
+          // Nếu ngày cuối là hôm nay, tăng lên 1 ngày để lấy hết order trong hôm nay
+          const nextDay = new Date(toDate);
+          nextDay.setDate(nextDay.getDate() + 1);
+          toParam = nextDay.toISOString().slice(0, 10);
+        }
+      }
       if (mode === "day") {
-        url = `${backendUrl}/api/order/revenue-by-day?from=${from}&to=${to}`;
+        url = `${backendUrl}/api/order/revenue-by-day?from=${from}&to=${toParam}`;
       } else if (mode === "month") {
         url = `${backendUrl}/api/order/revenue-by-month?year=${year}`;
       } else if (mode === "product") {
-        url = `${backendUrl}/api/order/revenue-by-product?from=${from}&to=${to}`;
+        url = `${backendUrl}/api/order/revenue-by-product?from=${from}&to=${toParam}`;
       }
       const response = await axios.get(url, { headers: { token } });
       if (response.data.success) {
