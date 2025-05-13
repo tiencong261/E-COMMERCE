@@ -30,7 +30,7 @@ An intelligent shopping assistant chatbot that helps customers find products, an
 
 ```bash
 git clone https://github.com/tiencong261/E-COMMERCE.git
-cd E-commerce-chatbot
+cd E-COMMERCE
 ```
 
 ### 2️⃣ Install dependencies
