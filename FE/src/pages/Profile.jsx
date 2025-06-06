@@ -75,7 +75,9 @@ const Profile = () => {
         <div className="bg-white shadow-xl rounded-lg overflow-hidden">
           <div className="bg-gradient-to-r from-gray-800 to-gray-700 p-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-white">My Profile</h2>
+              <h2 className="text-2xl font-bold text-white">
+                Thông tin cá nhân
+              </h2>
               <button
                 onClick={() => setIsEditing(!isEditing)}
                 className="text-white hover:text-gray-300 transition-colors"
@@ -144,13 +146,13 @@ const Profile = () => {
                     onClick={() => setIsEditing(false)}
                     className="px-4 py-2 text-gray-600 hover:text-gray-800"
                   >
-                    Cancel
+                    Hủy
                   </button>
                   <button
                     type="submit"
                     className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors"
                   >
-                    Save Changes
+                    Lưu thay đổi
                   </button>
                 </div>
               </form>
@@ -159,7 +161,7 @@ const Profile = () => {
                 <div className="flex items-center space-x-3">
                   <FaUser className="text-gray-500 w-5 h-5" />
                   <div>
-                    <p className="text-sm text-gray-500">Full Name</p>
+                    <p className="text-sm text-gray-500">Họ tên</p>
                     <p className="text-lg">{user.name}</p>
                   </div>
                 </div>
@@ -175,7 +177,7 @@ const Profile = () => {
                 <div className="flex items-center space-x-3">
                   <FaPhone className="text-gray-500 w-5 h-5" />
                   <div>
-                    <p className="text-sm text-gray-500">Phone Number</p>
+                    <p className="text-sm text-gray-500">Số điện thoại</p>
                     <p className="text-lg">{user.phone || "Not provided"}</p>
                   </div>
                 </div>
@@ -183,7 +185,7 @@ const Profile = () => {
                 <div className="flex items-center space-x-3">
                   <FaMapMarkerAlt className="text-gray-500 w-5 h-5" />
                   <div>
-                    <p className="text-sm text-gray-500">Address</p>
+                    <p className="text-sm text-gray-500">Địa chỉ</p>
                     <p className="text-lg">{user.address || "Not provided"}</p>
                   </div>
                 </div>

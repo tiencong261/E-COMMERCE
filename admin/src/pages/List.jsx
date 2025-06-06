@@ -18,8 +18,12 @@ const List = ({ token }) => {
     bestseller: false,
   });
 
-  const categories = ["Men", "Women", "Kids"];
-  const types = ["Topwear", "Bottomwear", "Winterwear"];
+  const categories = ["Men (Nam)", "Women (Nữ)", "Kids (Trẻ em)"];
+  const types = [
+    "Topwear (Thun)",
+    "Bottomwear (Quần dài)",
+    "Winterwear (Áo khoác)",
+  ];
 
   const fetchList = async () => {
     try {
@@ -100,71 +104,42 @@ const List = ({ token }) => {
     }
   };
 
-  // const removeProduct = async (id) => {
-  //   if (!id) {
-  //     toast.error("Invalid product ID");
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await axios.post(
-  //       backendUrl + "/api/product/remove",
-  //       { _id: id },
-  //       {
-  //         headers: {
-  //           token,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     if (response.data.success) {
-  //       toast.success(response.data.message);
-  //       await fetchList();
-  //     } else {
-  //       toast.error(response.data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error("Delete error:", error);
-  //     toast.error(error.response?.data?.message || "Error deleting product");
-  //   }
-  // };
-
   const removeProduct = async (id) => {
-    try{
-
-      const response = await axios.post(backendUrl + "/api/product/remove", {id}, {header:{token}})
+    try {
+      const response = await axios.post(
+        backendUrl + "/api/product/remove",
+        { id },
+        { header: { token } }
+      );
 
       if (response.data.success) {
         toast.success(response.data.message);
         await fetchList();
-      }
-      else {
+      } else {
         toast.error(response.data.message);
       }
-
     } catch (error) {
       console.log(error);
-      toast.error(error.message)
+      toast.error(error.message);
     }
-  }
-  
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
 
   return (
     <div>
-      <p className="mb-2">All Products List</p>
+      <p className="mb-2">Danh sách sản phẩm</p>
       <div className="flex flex-col gap-2">
         {/* List Table Title */}
         <div className="hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr_1fr] items-center py-1 px-2 border bg-gray-100 text-sm">
-          <b>Image</b>
-          <b>Name</b>
-          <b>Category</b>
-          <b>Price</b>
-          <b className="text-center">Edit</b>
-          <b className="text-center">Delete</b>
+          <b>Ảnh</b>
+          <b>Tên sản phẩm</b>
+          <b>Danh mục</b>
+          <b>Giá bán</b>
+          <b className="text-center">Sửa</b>
+          <b className="text-center">Xóa sản phẩm</b>
         </div>
 
         {/* Product List */}
@@ -186,8 +161,7 @@ const List = ({ token }) => {
             <p>{item.name}</p>
             <p>{item.category}</p>
             <p>
-              {currency}
-              {item.price}
+              {item.price} {currency}
             </p>
             <p
               onClick={() => handleEdit(item)}
@@ -207,12 +181,14 @@ const List = ({ token }) => {
 
       {/* Edit Modal */}
       {showEditModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg w-[600px]">
-            <h2 className="text-xl font-bold mb-4">Edit Product</h2>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center overflow-y-auto">
+          <div className="bg-white p-6 rounded-lg w-[600px] my-8 max-h-[90vh] overflow-y-auto">
+            <h2 className="text-xl font-bold mb-4">Sửa thông tin sản phẩm</h2>
             <form onSubmit={handleUpdate}>
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-1">Name</label>
+                <label className="block text-sm font-medium mb-1">
+                  Tên sản phẩm
+                </label>
                 <input
                   type="text"
                   value={editForm.name}
@@ -226,7 +202,7 @@ const List = ({ token }) => {
 
               <div className="mb-4">
                 <label className="block text-sm font-medium mb-1">
-                  Category
+                  Danh mục
                 </label>
                 <select
                   value={editForm.category}
@@ -262,7 +238,9 @@ const List = ({ token }) => {
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-1">Price</label>
+                <label className="block text-sm font-medium mb-1">
+                  Giá bán
+                </label>
                 <input
                   type="number"
                   value={editForm.price}
@@ -275,9 +253,7 @@ const List = ({ token }) => {
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-1">
-                  Description
-                </label>
+                <label className="block text-sm font-medium mb-1">Mô tả</label>
                 <textarea
                   value={editForm.description}
                   onChange={(e) =>
@@ -408,7 +384,9 @@ const List = ({ token }) => {
                     }
                     className="mr-2"
                   />
-                  <span className="text-sm font-medium">Bestseller</span>
+                  <span className="text-sm font-medium">
+                    Thêm vào hàng bán chạy
+                  </span>
                 </label>
               </div>
 
@@ -418,13 +396,13 @@ const List = ({ token }) => {
                   onClick={() => setShowEditModal(false)}
                   className="px-4 py-2 border rounded hover:bg-gray-100"
                 >
-                  Cancel
+                  Hủy
                 </button>
                 <button
                   type="submit"
                   className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
-                  Update
+                  Cập nhật
                 </button>
               </div>
             </form>
@@ -436,4 +414,3 @@ const List = ({ token }) => {
 };
 
 export default List;
-//9:11

@@ -45,7 +45,7 @@ const Order = () => {
   return (
     <div className="border-t pt-16">
       <div className="text-2xl">
-        <Title text1={"MY"} text2={"ORDERS"} />
+        <Title text1={"ĐƠN HÀNG"} text2={"CỦA TÔI"} />
       </div>
 
       <div>
@@ -59,23 +59,24 @@ const Order = () => {
               <div className="flex items-start gap-6 text-sm">
                 <img className="w-16 sm:w-20" src={item.image[0]} alt="" />
                 <div>
-                  <p className="sm:text-base font-medium">{item.name}</p>
-                  <div className="flex items-center gap-3 mt-2 text-base text-gray-700">
-                    <p>
-                      {currency}
-                      {item.price}
+                  <div className="flex justify-between items-center">
+                    <p className="text-sm">{item.name}</p>
+                    <p className="text-sm">
+                      {item.price} {currency}
                     </p>
-                    <p>Quantity: {item.quantity}</p>
+                  </div>
+                  <div className="flex items-center gap-3 mt-2 text-base text-gray-700">
+                    <p>Số lượng: {item.quantity}</p>
                     <p>Size: {item.size}</p>
                   </div>
                   <p className="mt-2">
-                    Date:{" "}
+                    Ngày:{" "}
                     <span className="text-gray-400">
                       {new Date(item.date).toDateString()}
                     </span>
                   </p>
                   <p className="mt-2">
-                    Payment:{" "}
+                    Thanh toán:{" "}
                     <span className="text-gray-400">{item.paymentMethod}</span>
                   </p>
                   {returnRequest && returnRequest.requested ? (
@@ -95,7 +96,7 @@ const Order = () => {
                   onClick={loadOrderData}
                   className="border px-4 py-2 text-sm font-medium rounded-sm"
                 >
-                  Track Order
+                  Theo dõi đơn hàng
                 </button>
                 {(!returnRequest || !returnRequest.requested) && (
                   <button
@@ -129,5 +130,3 @@ const Order = () => {
 };
 
 export default Order;
-
-// 11:37

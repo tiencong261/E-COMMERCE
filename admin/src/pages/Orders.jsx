@@ -241,7 +241,7 @@ const Orders = ({ token }) => {
       </Modal>
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-4">
-          <h3 className="text-xl font-bold">Order Page</h3>
+          <h3 className="text-xl font-bold">Trang Đơn Hàng</h3>
           {/* Badge số lượng yêu cầu đổi trả */}
           {pendingReturnCount > 0 && (
             <span className="bg-yellow-400 text-white px-2 py-1 rounded text-xs font-semibold">
@@ -264,7 +264,7 @@ const Orders = ({ token }) => {
             onClick={deleteAllOrders}
             className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
           >
-            Delete All Orders
+            Xóa Tất Cả Đơn Hàng
           </button>
         </div>
       </div>
@@ -313,19 +313,20 @@ const Orders = ({ token }) => {
                     }}
                   />
                   <div>
-                    <p className="font-medium">{item.name}</p>
+                    <p className="font-medium">Tên: {item.name}</p>
                     <p className="text-gray-500">Size: {item.size}</p>
-                    <p className="text-gray-500">Qty: {item.quantity}</p>
+                    <p className="text-gray-500">Số lượng: {item.quantity}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div>
+            <div className="pl-4">
               <p className="mt-3 mb-2 font-medium">
+                Tên khách hàng:{" "}
                 {order.address.firstName + " " + order.address.lastName}
               </p>
               <div>
-                <p>{order.address.street + ","}</p>
+                <p>Địa chỉ: {order.address.street},</p>
                 <p>
                   {order.address.city +
                     ", " +
@@ -336,15 +337,17 @@ const Orders = ({ token }) => {
                     order.address.zipcode}
                 </p>
               </div>
-              <p>{order.address.phone}</p>
+              <p className="mt-2">Số điện thoại: {order.address.phone}</p>
             </div>
             <div>
               <p className="text-sm sm:text-[15px]">
-                Items: {order.items.length}
+                Số lượng: {order.items.length}
               </p>
-              <p className="mt-3">Method: {order.paymentMethod}</p>
-              <p>Payment: {order.payment ? "Done" : "Pending"}</p>
-              <p>Date: {new Date(order.date).toLocaleDateString()}</p>
+              <p className="mt-3">Phương thức: {order.paymentMethod}</p>
+              <p>
+                Thanh toán: {order.payment ? "Đã thanh toán" : "Chờ thanh toán"}
+              </p>
+              <p>Ngày đặt: {new Date(order.date).toLocaleDateString()}</p>
               {/* Hiển thị trạng thái đổi trả/hoàn tiền nếu có */}
               {order.returnRequest && order.returnRequest.requested && (
                 <div className="mt-2 p-2 bg-yellow-50 border border-yellow-300 rounded">
@@ -438,18 +441,18 @@ const Orders = ({ token }) => {
               )}
             </div>
             <p className="text-sm sm:text-[15px] font-bold">
-              {currency} {order.amount}
+              {order.amount} {currency}
             </p>
             <select
               onChange={(event) => statusHandler(event, order._id)}
               value={order.status}
               className="p-2 font-semibold border rounded"
             >
-              <option value="Order Placed">Order Placed</option>
-              <option value="Packing">Packing</option>
-              <option value="Shipped">Shipped</option>
-              <option value="Out for delivery">Out for delivery</option>
-              <option value="Delivered">Delivered</option>
+              <option value="Order Placed">Đã đặt hàng</option>
+              <option value="Packing">Đang đóng gói</option>
+              <option value="Shipped">Đã gửi hàng</option>
+              <option value="Out for delivery">Đang giao hàng</option>
+              <option value="Delivered">Đã giao hàng</option>
             </select>
           </div>
         ))}

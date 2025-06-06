@@ -118,7 +118,7 @@ const Dashboard = ({ token }) => {
           <div className="text-gray-500">Đang tải...</div>
         ) : (
           <div className="text-3xl font-bold text-green-600">
-            {currency} {revenue.toLocaleString()}
+            {revenue.toLocaleString()} {currency}
           </div>
         )}
       </div>

@@ -31,19 +31,19 @@ const Navbar = () => {
       </Link>
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
         <NavLink to="/" className="flex flex-col items-center gap-1 ">
-          <p>HOME</p>
+          <p>TRANG CHỦ</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
         <NavLink to="/collection" className="flex flex-col items-center gap-1 ">
-          <p>COLLECTION</p>
+          <p>BỘ SƯU TẬP</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
         <NavLink to="/about" className="flex flex-col items-center gap-1  ">
-          <p>ABOUT</p>
+          <p>GIỚI THIỆU</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
         <NavLink to="/contact" className="flex flex-col items-center gap-1 ">
-          <p>CONTACT</p>
+          <p>LIÊN HỆ</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
       </ul>
@@ -78,16 +78,16 @@ const Navbar = () => {
                   onClick={() => navigate("/profile")}
                   className="cursor-pointer hover:text-black"
                 >
-                  My Profile
+                  Thông tin cá nhân
                 </p>
                 <p
                   onClick={() => navigate("/orders")}
                   className="cursor-pointer hover:text-black"
                 >
-                  Order
+                  Đơn hàng
                 </p>
                 <p onClick={logout} className="cursor-pointer hover:text-black">
-                  Logout
+                  Đăng xuất
                 </p>
               </div>
             </div>
@@ -106,7 +106,7 @@ const Navbar = () => {
           alt=""
         />
       </div>
-      {/* Sidebar menu for small screens: 49th min*/}
+      {/* Sidebar menu for small screens*/}
       <div
         className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
           visible ? "w-full" : "w-0"
@@ -125,28 +125,28 @@ const Navbar = () => {
             to="/"
             className="py-2 pl-6 border"
           >
-            HOME
+            TRANG CHỦ
           </NavLink>
           <NavLink
             onClick={() => setVisible(false)}
             to="/collection"
             className="py-2 pl-6 border"
           >
-            COLLECTION
+            BỘ SƯU TẬP
           </NavLink>
           <NavLink
             onClick={() => setVisible(false)}
             to="/about"
             className="py-2 pl-6 border"
           >
-            ABOUT
+            GIỚI THIỆU
           </NavLink>
           <NavLink
             onClick={() => setVisible(false)}
             to="/contact"
             className="py-2 pl-6 border"
           >
-            CONTACT
+            LIÊN HỆ
           </NavLink>
         </div>
       </div>
