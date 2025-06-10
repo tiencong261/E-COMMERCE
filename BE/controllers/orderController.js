@@ -1,7 +1,6 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
-// import Razorpay from "razorpay";
 import moment from "moment";
 import crypto from "crypto";
 import querystring from "qs";
@@ -10,8 +9,9 @@ import axios from "axios";
 import mongoose from "mongoose";
 
 // global variables
-const currency = "inr"; // Lưu ý: VNPAY chỉ hỗ trợ VND
-const deliveryCharge = 10;
+const currency = "usd";
+const deliveryCharge = 10000;
+const USD_TO_VND_RATE = 27081.2903; // Updated to match the rate shown on Stripe page
 
 // gateway initialize
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -72,7 +72,7 @@ const placeOrderStripe = async (req, res) => {
         product_data: {
           name: item.name,
         },
-        unit_amount: item.price * 100,
+        unit_amount: Math.round((item.price / USD_TO_VND_RATE) * 100), // Convert VND to USD cents
       },
       quantity: item.quantity,
     }));
@@ -83,7 +83,7 @@ const placeOrderStripe = async (req, res) => {
         product_data: {
           name: "Delivery Charges",
         },
-        unit_amount: deliveryCharge * 100,
+        unit_amount: Math.round((deliveryCharge / USD_TO_VND_RATE) * 100), // Convert VND to USD cents
       },
       quantity: 1,
     });
@@ -181,7 +181,10 @@ const verifyStripe = async (req, res) => {
 
   try {
     if (success === "true") {
-      await orderModel.findByIdAndUpdate(orderId, { payment: true });
+      await orderModel.findByIdAndUpdate(orderId, {
+        payment: true,
+        status: "Đã thanh toán",
+      });
       await userModel.findByIdAndUpdate(userId, { cartData: {} });
       res.json({ success: true });
     } else {
