@@ -10,6 +10,7 @@ import {
   updateStatus,
   verifyStripe,
   deleteAllOrders,
+  deleteOrderById,
   getRevenue,
   vnpayReturn,
   verifyRazorpay,
@@ -29,6 +30,7 @@ const orderRouter = express.Router();
 orderRouter.post("/list", adminAuth, allOrder);
 orderRouter.post("/status", adminAuth, updateStatus);
 orderRouter.post("/delete-all", adminAuth, deleteAllOrders);
+orderRouter.post("/delete", adminAuth, deleteOrderById);
 orderRouter.get("/revenue", adminAuth, getRevenue);
 
 // Thống kê doanh thu

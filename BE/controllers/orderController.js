@@ -445,6 +445,23 @@ const deleteAllOrders = async (req, res) => {
   }
 };
 
+const deleteOrderById = async (req, res) => {
+  try {
+    const { orderId } = req.body;
+    const result = await orderModel.findByIdAndDelete(orderId);
+    if (result) {
+      res.json({ success: true, message: "Đơn hàng đã được xóa." });
+    } else {
+      res
+        .status(404)
+        .json({ success: false, message: "Không tìm thấy đơn hàng." });
+    }
+  } catch (error) {
+    console.error("Error deleting order by ID:", error);
+    res.status(500).json({ success: false, message: "Lỗi khi xóa đơn hàng." });
+  }
+};
+
 export const getRevenue = async (req, res) => {
   try {
     const result = await orderModel.aggregate([
@@ -626,6 +643,7 @@ export {
   userOrders,
   updateStatus,
   deleteAllOrders,
+  deleteOrderById,
   requestReturnOrder,
   processReturnOrder,
   getReturnOrders,
