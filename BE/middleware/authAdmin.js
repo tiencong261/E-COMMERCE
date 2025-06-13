@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
+import User from "../models/userModel.js";
 
-const authUser = async (req, res, next) => {
+const authAdmin = async (req, res, next) => {
   try {
     const { token } = req.headers;
     if (!token) {
@@ -14,7 +15,15 @@ const authUser = async (req, res, next) => {
       return res.status(401).json({ success: false, message: "Invalid token" });
     }
 
-    req.user = { id: token_decode.id };
+    const user = await User.findById(token_decode.id);
+    if (!user || !user.isAdmin) {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied. Admin privileges required.",
+      });
+    }
+
+    req.user = user;
     next();
   } catch (error) {
     if (error.name === "TokenExpiredError") {
@@ -25,9 +34,9 @@ const authUser = async (req, res, next) => {
     if (error.name === "JsonWebTokenError") {
       return res.status(401).json({ success: false, message: "Invalid token" });
     }
-    console.error("Auth middleware error:", error);
+    console.error("Admin auth middleware error:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 
-export default authUser;
+export default authAdmin;
