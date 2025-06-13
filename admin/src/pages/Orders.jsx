@@ -101,36 +101,12 @@ const Orders = ({ token }) => {
     }
   };
 
-  const deleteSingleOrder = async (e, orderId) => {
-    e.stopPropagation(); // Ngăn sự kiện click lan truyền lên phần tử cha
-    if (!token) {
-      toast.error("Vui lòng đăng nhập trước");
-      return;
-    }
-    if (window.confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) {
-      try {
-        const response = await axios.post(
-          backendUrl + "/api/order/delete",
-          { orderId },
-          { headers: { token } }
-        );
-
-        if (response.data.success) {
-          toast.success(response.data.message || "Đơn hàng đã được xóa.");
-          fetchAllOrders();
-        } else {
-          toast.error(response.data.message || "Không thể xóa đơn hàng.");
-        }
-      } catch (error) {
-        console.error("Error deleting order:", error);
-        toast.error("Lỗi khi xóa đơn hàng.");
-      }
-    }
-  };
-
   // Đếm số lượng yêu cầu đổi trả/hoàn tiền đang chờ xử lý
   const pendingReturnCount = orders.filter(
-    (order) => order.returnRequest && order.returnRequest.requested // Đếm tất cả các yêu cầu đã được gửi, bất kể trạng thái
+    (order) =>
+      order.returnRequest &&
+      order.returnRequest.requested &&
+      order.returnRequest.status === "pending"
   ).length;
 
   useEffect(() => {
@@ -477,25 +453,17 @@ const Orders = ({ token }) => {
             <p className="text-sm sm:text-[15px] font-bold">
               {order.amount} {currency}
             </p>
-            <div className="flex flex-col gap-2">
-              <select
-                onChange={(event) => statusHandler(event, order._id)}
-                value={order.status}
-                className="p-2 font-semibold border rounded"
-              >
-                <option value="Order Placed">Đã đặt hàng</option>
-                <option value="Packing">Đang đóng gói</option>
-                <option value="Shipped">Đã gửi hàng</option>
-                <option value="Out for delivery">Đang giao hàng</option>
-                <option value="Delivered">Đã giao hàng</option>
-              </select>
-              <button
-                onClick={(e) => deleteSingleOrder(e, order._id)}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm font-semibold"
-              >
-                Xóa đơn hàng
-              </button>
-            </div>
+            <select
+              onChange={(event) => statusHandler(event, order._id)}
+              value={order.status}
+              className="p-2 font-semibold border rounded"
+            >
+              <option value="Order Placed">Đã đặt hàng</option>
+              <option value="Packing">Đang đóng gói</option>
+              <option value="Shipped">Đã gửi hàng</option>
+              <option value="Out for delivery">Đang giao hàng</option>
+              <option value="Delivered">Đã giao hàng</option>
+            </select>
           </div>
         ))}
       </div>

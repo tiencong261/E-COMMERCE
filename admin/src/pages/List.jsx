@@ -238,7 +238,9 @@ const List = ({ token }) => {
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-1">
+                <label className="
+                
+                ">
                   Giá bán
                 </label>
                 <input

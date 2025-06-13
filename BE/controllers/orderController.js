@@ -1,6 +1,7 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
+// import Razorpay from "razorpay";
 import moment from "moment";
 import crypto from "crypto";
 import querystring from "qs";
@@ -12,9 +13,8 @@ import SolanaService from '../services/solanaService.js';
 const solanaService = new SolanaService();
 
 // global variables
-const currency = "usd";
-const deliveryCharge = 10000;
-const USD_TO_VND_RATE = 27081.2903; // Updated to match the rate shown on Stripe page
+const currency = "inr"; // Lưu ý: VNPAY chỉ hỗ trợ VND
+const deliveryCharge = 10;
 
 // gateway initialize
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -129,7 +129,7 @@ const placeOrderStripe = async (req, res) => {
         product_data: {
           name: item.name,
         },
-        unit_amount: Math.round((item.price / USD_TO_VND_RATE) * 100), // Convert VND to USD cents
+        unit_amount: item.price * 100,
       },
       quantity: item.quantity,
     }));
@@ -140,7 +140,7 @@ const placeOrderStripe = async (req, res) => {
         product_data: {
           name: "Delivery Charges",
         },
-        unit_amount: Math.round((deliveryCharge / USD_TO_VND_RATE) * 100), // Convert VND to USD cents
+        unit_amount: deliveryCharge * 100,
       },
       quantity: 1,
     });
@@ -274,10 +274,7 @@ const verifyStripe = async (req, res) => {
 
   try {
     if (success === "true") {
-      await orderModel.findByIdAndUpdate(orderId, {
-        payment: true,
-        status: "Đã thanh toán",
-      });
+      await orderModel.findByIdAndUpdate(orderId, { payment: true });
       await userModel.findByIdAndUpdate(userId, { cartData: {} });
       res.json({ success: true });
     } else {
@@ -538,23 +535,6 @@ const deleteAllOrders = async (req, res) => {
   }
 };
 
-const deleteOrderById = async (req, res) => {
-  try {
-    const { orderId } = req.body;
-    const result = await orderModel.findByIdAndDelete(orderId);
-    if (result) {
-      res.json({ success: true, message: "Đơn hàng đã được xóa." });
-    } else {
-      res
-        .status(404)
-        .json({ success: false, message: "Không tìm thấy đơn hàng." });
-    }
-  } catch (error) {
-    console.error("Error deleting order by ID:", error);
-    res.status(500).json({ success: false, message: "Lỗi khi xóa đơn hàng." });
-  }
-};
-
 export const getRevenue = async (req, res) => {
   try {
     const result = await orderModel.aggregate([
@@ -736,7 +716,6 @@ export {
   userOrders,
   updateStatus,
   deleteAllOrders,
-  deleteOrderById,
   requestReturnOrder,
   processReturnOrder,
   getReturnOrders,
