@@ -1,288 +1,466 @@
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { backendUrl, currency } from "../App";
+import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
 import Modal from "react-modal";
 
-const Orders = () => {
+const Orders = ({ token }) => {
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showReturnOnly, setShowReturnOnly] = useState(false);
+  const [modalOrder, setModalOrder] = useState(null);
 
-  const loadOrders = async () => {
+  const fetchAllOrders = async () => {
+    if (!token) {
+      return null;
+    }
+
     try {
-      setLoading(true);
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/order/admin`,
-        {
-          headers: {
-            token: localStorage.getItem("adminToken"),
-          },
-        }
+      const response = await axios.post(
+        backendUrl + "/api/order/list",
+        {},
+        { headers: { token } }
       );
+      // console.log(response.data);
       if (response.data.success) {
         setOrders(response.data.orders);
+      } else {
+        toast.error(response.data.message);
       }
     } catch (error) {
-      toast.error("Lỗi khi tải danh sách đơn hàng");
-    } finally {
-      setLoading(false);
+      console.log(error);
+      toast.error(error.message);
     }
   };
+
+  const deleteAllOrders = async () => {
+    if (!token) {
+      toast.error("Please login first");
+      return;
+    }
+
+    try {
+      console.log("Deleting all orders...");
+      const response = await axios.post(
+        backendUrl + "/api/order/delete-all",
+        {},
+        {
+          headers: {
+            token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Delete response:", response.data);
+
+      if (response.data.success) {
+        toast.success("All orders have been deleted");
+        setOrders([]);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting orders:", error);
+      toast.error(error.message);
+    }
+  };
+
+  // const statusHandler = async (event, orderId) => {
+  //   try {
+  //     const response = await axios.post(backendUrl+"/api/order/status", {orderId, status:event.target.value}, {headers:{token}})
+  //     if (response.data.success) {
+  //       await fetchAllOrders();
+  //     }
+
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error(error.message);
+  //   }
+  // }
+
+  const statusHandler = async (event, orderId) => {
+    try {
+      const response = await axios.post(
+        backendUrl + "/api/order/status",
+        { orderId, status: event.target.value },
+        { headers: { token } }
+      );
+
+      if (response.data.success) {
+        await fetchAllOrders();
+        console.log("Status updated successfully:", response.data);
+      } else {
+        console.error("Failed to update status:", response.data);
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error updating status:", error);
+      toast.error(error.message);
+    }
+  };
+
+  // Đếm số lượng yêu cầu đổi trả/hoàn tiền đang chờ xử lý
+  const pendingReturnCount = orders.filter(
+    (order) =>
+      order.returnRequest &&
+      order.returnRequest.requested &&
+      order.returnRequest.status === "pending"
+  ).length;
 
   useEffect(() => {
-    loadOrders();
-  }, []);
-
-  const handleStatusChange = async (orderId, newStatus) => {
-    try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/order/${orderId}`,
-        { status: newStatus },
-        {
-          headers: {
-            token: localStorage.getItem("adminToken"),
-          },
-        }
-      );
-      if (response.data.success) {
-        toast.success("Cập nhật trạng thái thành công");
-        loadOrders();
-      }
-    } catch (error) {
-      toast.error("Lỗi khi cập nhật trạng thái");
-    }
-  };
-
-  const handleReturnRequest = async (orderId, action) => {
-    try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/order/return-request/${orderId}`,
-        { action },
-        {
-          headers: {
-            token: localStorage.getItem("adminToken"),
-          },
-        }
-      );
-      if (response.data.success) {
-        toast.success("Xử lý yêu cầu đổi trả thành công");
-        loadOrders();
-      }
-    } catch (error) {
-      toast.error("Lỗi khi xử lý yêu cầu đổi trả");
-    }
-  };
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "Đã xác nhận":
-        return "bg-blue-500";
-      case "Đang giao hàng":
-        return "bg-yellow-500";
-      case "Đã giao hàng":
-        return "bg-green-500";
-      case "Đã hủy":
-        return "bg-red-500";
-      default:
-        return "bg-gray-500";
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
-    );
-  }
+    fetchAllOrders();
+  }, [token]);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Quản lý đơn hàng</h1>
-
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Mã đơn hàng
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Khách hàng
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Sản phẩm
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Tổng tiền
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Phương thức thanh toán
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Trạng thái
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Thao tác
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {orders.map((order) => (
-              <tr key={order._id}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {order._id}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {order.userId?.name || "N/A"}
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-900">
-                  <div className="max-h-20 overflow-y-auto">
-                    {order.items.map((item, index) => (
-                      <div key={index} className="mb-1">
-                        {item.name} - {item.quantity} x {item.size}
-                      </div>
-                    ))}
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {order.amount.toLocaleString()} VND
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {order.paymentMethod}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span
-                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(
-                      order.status
-                    )} text-white`}
-                  >
-                    {order.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  <div className="flex flex-col gap-2">
-                    <select
-                      className="border rounded px-2 py-1 text-sm"
-                      value={order.status}
-                      onChange={(e) =>
-                        handleStatusChange(order._id, e.target.value)
-                      }
-                    >
-                      <option value="Chờ xác nhận">Chờ xác nhận</option>
-                      <option value="Đã xác nhận">Đã xác nhận</option>
-                      <option value="Đang giao hàng">Đang giao hàng</option>
-                      <option value="Đã giao hàng">Đã giao hàng</option>
-                      <option value="Đã hủy">Đã hủy</option>
-                    </select>
-                    {order.returnRequest && order.returnRequest.requested && (
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() =>
-                            handleReturnRequest(order._id, "approve")
-                          }
-                          className="bg-green-500 text-white px-2 py-1 rounded text-sm"
-                        >
-                          Chấp nhận
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleReturnRequest(order._id, "reject")
-                          }
-                          className="bg-red-500 text-white px-2 py-1 rounded text-sm"
-                        >
-                          Từ chối
-                        </button>
-                      </div>
-                    )}
+    <div>
+      <Modal
+        isOpen={!!modalOrder}
+        onRequestClose={() => setModalOrder(null)}
+        ariaHideApp={false}
+        style={{ content: { maxWidth: 500, margin: "auto", borderRadius: 8 } }}
+      >
+        {modalOrder && (
+          <div>
+            <h2 className="text-lg font-bold mb-2">
+              Chi tiết đổi trả/hoàn tiền
+            </h2>
+            <p>
+              <b>Khách hàng:</b> {modalOrder.address.firstName}{" "}
+              {modalOrder.address.lastName}
+            </p>
+            <p>
+              <b>Lý do:</b> {modalOrder.returnRequest.reason}
+            </p>
+            <p>
+              <b>Trạng thái:</b> {modalOrder.returnRequest.status}
+            </p>
+            {modalOrder.returnRequest.adminNote && (
+              <p>
+                <b>Ghi chú admin:</b> {modalOrder.returnRequest.adminNote}
+              </p>
+            )}
+            <div className="flex gap-2 mt-4">
+              {modalOrder.returnRequest.status === "pending" && (
+                <>
+                  {/* Nếu đơn chưa thanh toán chỉ cho phép duyệt */}
+                  {modalOrder.payment === false ? (
                     <button
-                      onClick={() => {
-                        setSelectedOrder(order);
-                        setShowModal(true);
+                      className="px-3 py-1 bg-green-500 text-white rounded text-xs"
+                      onClick={async () => {
+                        const adminNote = prompt(
+                          "Ghi chú khi duyệt đổi trả/hoàn tiền:"
+                        );
+                        await axios.post(
+                          backendUrl + "/api/order/process-return",
+                          {
+                            orderId: modalOrder._id,
+                            status: "approved",
+                            adminNote,
+                          },
+                          { headers: { token } }
+                        );
+                        localStorage.setItem("revenueNeedsUpdate", Date.now());
+                        toast.success("Đã duyệt yêu cầu đổi trả/hoàn tiền!");
+                        setModalOrder(null);
+                        fetchAllOrders();
                       }}
-                      className="text-blue-500 hover:text-blue-700 text-sm"
                     >
-                      Chi tiết
+                      Duyệt yêu cầu
                     </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Order Details Modal */}
-      {showModal && selectedOrder && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Chi tiết đơn hàng</h2>
-              <button
-                onClick={() => setShowModal(false)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-semibold">Thông tin khách hàng</h3>
-                <p>Tên: {selectedOrder.userId?.name || "N/A"}</p>
-                <p>Email: {selectedOrder.userId?.email || "N/A"}</p>
-              </div>
-              <div>
-                <h3 className="font-semibold">Địa chỉ giao hàng</h3>
-                <p>{selectedOrder.address?.street}</p>
-                <p>
-                  {selectedOrder.address?.city}, {selectedOrder.address?.state}
-                </p>
-                <p>
-                  {selectedOrder.address?.zipcode},{" "}
-                  {selectedOrder.address?.country}
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold">Sản phẩm</h3>
-                {selectedOrder.items.map((item, index) => (
-                  <div key={index} className="flex items-center gap-4 py-2">
-                    <img
-                      src={item.image[0]}
-                      alt={item.name}
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div>
-                      <p className="font-medium">{item.name}</p>
-                      <p>Size: {item.size}</p>
-                      <p>Số lượng: {item.quantity}</p>
-                      <p>Giá: {item.price.toLocaleString()} VND</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div>
-                <h3 className="font-semibold">Thông tin thanh toán</h3>
-                <p>Phương thức: {selectedOrder.paymentMethod}</p>
-                <p>Tổng tiền: {selectedOrder.amount.toLocaleString()} VND</p>
-                <p>Trạng thái: {selectedOrder.status}</p>
-              </div>
-              {selectedOrder.returnRequest &&
-                selectedOrder.returnRequest.requested && (
-                  <div>
-                    <h3 className="font-semibold">Yêu cầu đổi trả</h3>
-                    <p>Lý do: {selectedOrder.returnRequest.reason}</p>
-                    <p>Trạng thái: {selectedOrder.returnRequest.status}</p>
-                  </div>
-                )}
+                  ) : (
+                    <>
+                      <button
+                        className="px-3 py-1 bg-green-500 text-white rounded text-xs"
+                        onClick={async () => {
+                          const adminNote = prompt(
+                            "Ghi chú khi duyệt đổi trả/hoàn tiền:"
+                          );
+                          await axios.post(
+                            backendUrl + "/api/order/process-return",
+                            {
+                              orderId: modalOrder._id,
+                              status: "approved",
+                              adminNote,
+                            },
+                            { headers: { token } }
+                          );
+                          localStorage.setItem(
+                            "revenueNeedsUpdate",
+                            Date.now()
+                          );
+                          toast.success(
+                            "Đã duyệt yêu cầu đổi trả/hoàn tiền! Doanh thu đã được cập nhật."
+                          );
+                          setModalOrder(null);
+                          fetchAllOrders();
+                        }}
+                      >
+                        Duyệt yêu cầu
+                      </button>
+                      <button
+                        className="px-3 py-1 bg-red-500 text-white rounded text-xs"
+                        onClick={async () => {
+                          const adminNote = prompt("Lý do từ chối:");
+                          await axios.post(
+                            backendUrl + "/api/order/process-return",
+                            {
+                              orderId: modalOrder._id,
+                              status: "rejected",
+                              adminNote,
+                            },
+                            { headers: { token } }
+                          );
+                          localStorage.setItem(
+                            "revenueNeedsUpdate",
+                            Date.now()
+                          );
+                          toast.success(
+                            "Đã từ chối yêu cầu đổi trả/hoàn tiền!"
+                          );
+                          setModalOrder(null);
+                          fetchAllOrders();
+                        }}
+                      >
+                        Từ chối yêu cầu
+                      </button>
+                    </>
+                  )}
+                  <button
+                    className="px-3 py-1 bg-gray-300 rounded text-xs"
+                    onClick={() => setModalOrder(null)}
+                  >
+                    Đóng
+                  </button>
+                </>
+              )}
             </div>
           </div>
+        )}
+      </Modal>
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex items-center gap-4">
+          <h3 className="text-xl font-bold">Trang Đơn Hàng</h3>
+          {/* Badge số lượng yêu cầu đổi trả */}
+          {pendingReturnCount > 0 && (
+            <span className="bg-yellow-400 text-white px-2 py-1 rounded text-xs font-semibold">
+              {pendingReturnCount} yêu cầu đổi trả/hoàn tiền mới
+            </span>
+          )}
         </div>
-      )}
+        <div className="flex gap-2">
+          <button
+            onClick={() => setShowReturnOnly((v) => !v)}
+            className={`px-4 py-2 rounded ${
+              showReturnOnly
+                ? "bg-yellow-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            } font-semibold`}
+          >
+            {showReturnOnly ? "Xem tất cả đơn" : "Chỉ xem đơn đổi trả"}
+          </button>
+          <button
+            onClick={deleteAllOrders}
+            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Xóa Tất Cả Đơn Hàng
+          </button>
+        </div>
+      </div>
+      <div>
+        {/* Header row */}
+        <div className="hidden lg:grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3 items-center border-b-2 border-gray-300 px-5 py-2 font-semibold bg-gray-100 text-gray-700 text-xs sm:text-sm mb-2">
+          <div>Sản phẩm</div>
+          <div>Thông tin giao hàng</div>
+          <div>Thông tin đơn hàng</div>
+          <div>Tổng tiền</div>
+          <div>Trạng thái</div>
+        </div>
+        {(showReturnOnly
+          ? orders.filter(
+              (order) => order.returnRequest && order.returnRequest.requested
+            )
+          : orders
+        ).map((order, index) => (
+          <div
+            className="grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3 items-start border-2 border-gray-200 p-5 md:p-8 my-3 md:my-4 text-xs sm:text-sm text-gray-700 cursor-pointer"
+            key={index}
+            onClick={() =>
+              order.returnRequest && order.returnRequest.requested
+                ? setModalOrder(order)
+                : null
+            }
+          >
+            <div className="flex flex-col gap-2">
+              {order.items.map((item, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <img
+                    src={
+                      item.image?.[0] ||
+                      "https://via.placeholder.com/100x100?text=No+Image"
+                    }
+                    alt={item.name}
+                    className="w-12 h-12 object-cover rounded"
+                    onError={(e) => {
+                      if (
+                        e.target.src !==
+                        "https://via.placeholder.com/100x100?text=No+Image"
+                      ) {
+                        e.target.src =
+                          "https://via.placeholder.com/100x100?text=No+Image";
+                      }
+                    }}
+                  />
+                  <div>
+                    <p className="font-medium">Tên: {item.name}</p>
+                    <p className="text-gray-500">Size: {item.size}</p>
+                    <p className="text-gray-500">Số lượng: {item.quantity}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="pl-4">
+              <p className="mt-3 mb-2 font-medium">
+                Tên khách hàng:{" "}
+                {order.address.firstName + " " + order.address.lastName}
+              </p>
+              <div>
+                <p>Địa chỉ: {order.address.street},</p>
+                <p>
+                  {order.address.city +
+                    ", " +
+                    order.address.state +
+                    ", " +
+                    order.address.country +
+                    ", " +
+                    order.address.zipcode}
+                </p>
+              </div>
+              <p className="mt-2">Số điện thoại: {order.address.phone}</p>
+            </div>
+            <div>
+              <p className="text-sm sm:text-[15px]">
+                Số lượng: {order.items.length}
+              </p>
+              <p className="mt-3">Phương thức: {order.paymentMethod}</p>
+              <p>
+                Thanh toán: {order.payment ? "Đã thanh toán" : "Chờ thanh toán"}
+              </p>
+              <p>Ngày đặt: {new Date(order.date).toLocaleDateString()}</p>
+              {/* Hiển thị trạng thái đổi trả/hoàn tiền nếu có */}
+              {order.returnRequest && order.returnRequest.requested && (
+                <div className="mt-2 p-2 bg-yellow-50 border border-yellow-300 rounded">
+                  <p className="text-yellow-700 font-semibold">
+                    Yêu cầu đổi trả/hoàn tiền:{" "}
+                    <b>{order.returnRequest.status}</b>
+                  </p>
+                  <p className="text-xs text-gray-700">
+                    Lý do: {order.returnRequest.reason}
+                  </p>
+                  {order.returnRequest.adminNote && (
+                    <p className="text-xs text-gray-500">
+                      Ghi chú admin: {order.returnRequest.adminNote}
+                    </p>
+                  )}
+                  {/* Nếu trạng thái là pending, cho phép admin xử lý */}
+                  {order.returnRequest.status === "pending" && (
+                    <div className="mt-2 flex flex-col gap-1">
+                      <button
+                        className="px-2 py-1 bg-green-500 text-white rounded text-xs"
+                        onClick={async () => {
+                          const adminNote = prompt(
+                            "Ghi chú khi duyệt đổi trả/hoàn tiền:"
+                          );
+                          await axios.post(
+                            backendUrl + "/api/order/process-return",
+                            {
+                              orderId: order._id,
+                              status: "approved",
+                              adminNote,
+                            },
+                            { headers: { token } }
+                          );
+                          localStorage.setItem(
+                            "revenueNeedsUpdate",
+                            Date.now()
+                          );
+                          toast.success("Đã duyệt yêu cầu đổi trả/hoàn tiền!");
+                          fetchAllOrders();
+                        }}
+                      >
+                        Duyệt yêu cầu
+                      </button>
+                      <button
+                        className="px-2 py-1 bg-red-500 text-white rounded text-xs"
+                        onClick={async () => {
+                          const adminNote = prompt("Lý do từ chối:");
+                          await axios.post(
+                            backendUrl + "/api/order/process-return",
+                            {
+                              orderId: order._id,
+                              status: "rejected",
+                              adminNote,
+                            },
+                            { headers: { token } }
+                          );
+                          localStorage.setItem(
+                            "revenueNeedsUpdate",
+                            Date.now()
+                          );
+                          toast.success(
+                            "Đã từ chối yêu cầu đổi trả/hoàn tiền!"
+                          );
+                          fetchAllOrders();
+                        }}
+                      >
+                        Từ chối yêu cầu
+                      </button>
+                      <button
+                        className="px-2 py-1 bg-blue-500 text-white rounded text-xs"
+                        onClick={async () => {
+                          const adminNote = prompt("Ghi chú khi hoàn tiền:");
+                          await axios.post(
+                            backendUrl + "/api/order/process-return",
+                            {
+                              orderId: order._id,
+                              status: "refunded",
+                              adminNote,
+                            },
+                            { headers: { token } }
+                          );
+                          toast.success("Đã hoàn tiền cho đơn hàng!");
+                          fetchAllOrders();
+                        }}
+                      >
+                        Đánh dấu đã hoàn tiền
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+            <p className="text-sm sm:text-[15px] font-bold">
+              {order.amount} {currency}
+            </p>
+            <select
+              onChange={(event) => statusHandler(event, order._id)}
+              value={order.status}
+              className="p-2 font-semibold border rounded"
+            >
+              <option value="Order Placed">Đã đặt hàng</option>
+              <option value="Packing">Đang đóng gói</option>
+              <option value="Shipped">Đã gửi hàng</option>
+              <option value="Out for delivery">Đang giao hàng</option>
+              <option value="Delivered">Đã giao hàng</option>
+            </select>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 export default Orders;
+
+// 12:12

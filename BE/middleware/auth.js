@@ -14,7 +14,7 @@ const authUser = async (req, res, next) => {
       return res.status(401).json({ success: false, message: "Invalid token" });
     }
 
-    req.user = { id: token_decode.id };
+    req.body.userId = token_decode.id;
     next();
   } catch (error) {
     if (error.name === "TokenExpiredError") {
