@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@solana/pay": "^0.2.5",
+    "@solana/web3.js": "^1.98.2",
     "@tailwindcss/postcss": "^4.0.8",
     "@tailwindcss/vite": "^4.0.8",
     "axios": "^1.8.3",

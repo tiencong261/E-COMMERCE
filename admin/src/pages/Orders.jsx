@@ -276,11 +276,10 @@ const Orders = ({ token }) => {
         <div className="flex gap-2">
           <button
             onClick={() => setShowReturnOnly((v) => !v)}
-            className={`px-4 py-2 rounded ${
-              showReturnOnly
+            className={`px-4 py-2 rounded ${showReturnOnly
                 ? "bg-yellow-500 text-white"
                 : "bg-gray-200 text-gray-700"
-            } font-semibold`}
+              } font-semibold`}
           >
             {showReturnOnly ? "Xem tất cả đơn" : "Chỉ xem đơn đổi trả"}
           </button>
@@ -303,8 +302,8 @@ const Orders = ({ token }) => {
         </div>
         {(showReturnOnly
           ? orders.filter(
-              (order) => order.returnRequest && order.returnRequest.requested
-            )
+            (order) => order.returnRequest && order.returnRequest.requested
+          )
           : orders
         ).map((order, index) => (
           <div
@@ -372,6 +371,17 @@ const Orders = ({ token }) => {
                 Thanh toán: {order.payment ? "Đã thanh toán" : "Chờ thanh toán"}
               </p>
               <p>Ngày đặt: {new Date(order.date).toLocaleDateString()}</p>
+              {order.paymentMethod === "Solana" && order.cryptoPayment && (
+                <div className="mt-2 p-2 bg-purple-50 border border-purple-300 rounded">
+                  <p className="text-purple-700 font-semibold">Thông tin Solana:</p>
+                  <p className="text-xs">Địa chỉ: {order.cryptoPayment.address}</p>
+                  <p className="text-xs">Số lượng: {order.cryptoPayment.amount} SOL</p>
+                  <p className="text-xs">Trạng thái: {order.cryptoPayment.status}</p>
+                  {order.cryptoPayment.txid && (
+                    <p className="text-xs">TX: {order.cryptoPayment.txid.substring(0, 20)}...</p>
+                  )}
+                </div>
+              )}
               {/* Hiển thị trạng thái đổi trả/hoàn tiền nếu có */}
               {order.returnRequest && order.returnRequest.requested && (
                 <div className="mt-2 p-2 bg-yellow-50 border border-yellow-300 rounded">
